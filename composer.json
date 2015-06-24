@@ -1,6 +1,6 @@
 {
     "name": "bupy7/yii2-telize",
-    "description": "Get information by IP address via Telize service.",
+    "description": "Wrapper of service offers a REST API allowing to get a visitor IP address and to query location information from any IP address.",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","ip","location","geo","city","country","telize"],
     "license": "BSD-3-Clause",
