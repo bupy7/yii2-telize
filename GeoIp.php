@@ -39,7 +39,7 @@ class GeoIP extends Component
      * - `isp`              - Internet service provider.
      * - `timezone`         - Time Zone.
      * 
-     * @param string $ip IP address of visitor.
+     * @param string $ip IP address of visitor. If not set will be uses current IP address.
      * @return mixed
      */
     public function getInfo($ip = null)
