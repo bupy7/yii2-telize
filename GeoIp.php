@@ -46,21 +46,20 @@ class GeoIp extends Component
      * - `timezone`         - Time Zone.
      * 
      * @param string $ip IP address of visitor. If not set will be uses current IP address.
-     * @return mixed
+     * @return object|false
      */
     public function getInfo($ip = null)
     {
         if ($ip === null) {
             if (!$this->useApi) {
                 $ip = Yii::$app->request->userIP;
-            } else {
-                $ip = $this->ip;
             }
         }
-        if ($ip === false) {
+        $result = Json::decode(file_get_contents(self::URL_API . 'geoip/' . $ip));
+        if ($result === null) {
             return false;
         }
-        return Json::decode(file_get_contents(self::URL_API . 'geoip/' . $ip));
+        return $result;
     }
     
     /**
