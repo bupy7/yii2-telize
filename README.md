@@ -17,7 +17,7 @@ php composer.phar require --prefer-dist bupy7/yii2-telize "@dev"
 or add
 
 ```
-"bupy7/yii2-telize": "*"
+"bupy7/yii2-telize": "@dev"
 ```
 
 to the require section of your `composer.json` file.
