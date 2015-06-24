@@ -16,9 +16,15 @@ use yii\helpers\Json;
 class GeoIp extends Component
 {
     /**
-     * URL of method for get information by the IP address.
+     * URL of API methods.
      */ 
-    const METHOD_URL = 'http://www.telize.com/geoip/';
+    const URL_API = 'http://www.telize.com/';
+    
+    /**
+     * @var boolean Whether set `true` then IP address of visitor will be get via API. 
+     * Else, via \yii\web\Request::$userIP.
+     */
+    public $useApi = false;
 
     /**
      * Returned information by IP address with following paramters:
@@ -45,9 +51,29 @@ class GeoIp extends Component
     public function getInfo($ip = null)
     {
         if ($ip === null) {
-            $ip = Yii::$app->request->userIP;
+            if (!$this->useApi) {
+                $ip = Yii::$app->request->userIP;
+            } else {
+                $ip = $this->ip;
+            }
         }
-        return Json::decode(file_get_contents(self::METHOD_URL . $ip));
+        if ($ip === false) {
+            return false;
+        }
+        return Json::decode(file_get_contents(self::URL_API . 'geoip/' . $ip));
+    }
+    
+    /**
+     * Returned IP address of visitor if successful.
+     * @return string|false
+     */
+    public function getIp()
+    {
+        $ip = Json::decode(file_get_contents(self::URL_API . 'jsonip'));
+        if (!isset($ip['ip']) || empty($ip['ip'])) {
+            return false;
+        }
+        return $ip['ip'];
     }
 }
 
