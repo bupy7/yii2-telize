@@ -36,6 +36,7 @@ Add following code to your configuration file of application:
     ...
     'geoIp' => [
         'class' => 'bupy7\telize\GeoIp',
+        'useApi' => YII_ENV_DEV,
     ],
     ...
 ],
@@ -48,6 +49,8 @@ Get information from IP address:
 var_dump(Yii::$app->geoIp->info);
 // or select address
 var_dump(Yii::$app->geoIp->getInfo('255.255.255.255'));
+// get ip
+var_dump(Yii::$app->geoIp->ip);
 ```
 
 
