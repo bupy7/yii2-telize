@@ -13,7 +13,7 @@ use yii\helpers\Json;
  * @author Vasilij Belosludcev http://mihaly4.ru
  * @since 1.0.0
  */
-class GeoIP extends Component
+class GeoIp extends Component
 {
     /**
      * URL of method for get information by the IP address.
