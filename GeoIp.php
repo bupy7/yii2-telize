@@ -46,7 +46,7 @@ class GeoIp extends Component
      * - `timezone`         - Time Zone.
      * 
      * @param string $ip IP address of visitor. If not set will be uses current IP address.
-     * @return object|false
+     * @return array|false
      */
     public function getInfo($ip = null)
     {
