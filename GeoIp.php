@@ -56,7 +56,7 @@ class GeoIp extends Component
             }
         }
         $result = Json::decode(file_get_contents(self::URL_API . 'geoip/' . $ip));
-        if ($result === null) {
+        if (empty($ip['ip'])) {
             return false;
         }
         return $result;
@@ -69,7 +69,7 @@ class GeoIp extends Component
     public function getIp()
     {
         $ip = Json::decode(file_get_contents(self::URL_API . 'jsonip'));
-        if (!isset($ip['ip']) || empty($ip['ip'])) {
+        if (empty($ip['ip'])) {
             return false;
         }
         return $ip['ip'];
