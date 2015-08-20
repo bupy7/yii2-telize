@@ -24,7 +24,7 @@ class GeoIp extends Component
      * @var boolean Whether set `true` then IP address of visitor will be get via API. 
      * Else, via \yii\web\Request::$userIP.
      */
-    public $useApi = false;
+    public $externalIp = false;
 
     /**
      * Returned information by IP address with following paramters:
@@ -51,7 +51,7 @@ class GeoIp extends Component
     public function getInfo($ip = null)
     {
         if ($ip === null) {
-            if (!$this->useApi) {
+            if (!$this->externalIp) {
                 $ip = Yii::$app->request->userIP;
             }
         }
