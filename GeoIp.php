@@ -5,6 +5,7 @@ namespace bupy7\telize;
 use Yii;
 use yii\base\Component;
 use yii\helpers\Json;
+use linslin\yii2\curl\Curl;
 
 /**
  * Wrapper of service offers a REST API allowing to get a visitor IP address and to query location information 
@@ -55,11 +56,14 @@ class GeoIp extends Component
                 $ip = Yii::$app->request->userIP;
             }
         }
-        $result = Json::decode(file_get_contents(self::URL_API . 'geoip/' . $ip));
-        if (empty($ip['ip'])) {
-            return false;
+        $curl = new Curl;
+        if ($curl->get(self::URL_API . 'geoip/' . $ip)) {
+            if (empty($curl->response['ip'])) {
+                return false;
+            }
+            return $curl->response;
         }
-        return $result;
+        return false;
     }
     
     /**
