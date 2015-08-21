@@ -4,7 +4,6 @@ namespace bupy7\telize;
 
 use Yii;
 use yii\base\Component;
-use yii\helpers\Json;
 use linslin\yii2\curl\Curl;
 
 /**
@@ -72,11 +71,14 @@ class GeoIp extends Component
      */
     public function getIp()
     {
-        $ip = Json::decode(file_get_contents(self::URL_API . 'jsonip'));
-        if (empty($ip['ip'])) {
-            return false;
+        $curl = new Curl;
+        if ($curl->get(self::URL_API . 'jsonip')) {
+            if (empty($curl->response['ip'])) {
+                return false;
+            }
+            return $curl->response['ip'];
         }
-        return $ip['ip'];
+        return false;
     }
 }
 
