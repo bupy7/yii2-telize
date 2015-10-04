@@ -11,13 +11,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist bupy7/yii2-telize "@dev"
+php composer.phar require --prefer-dist bupy7/yii2-telize "*"
 ```
 
 or add
 
 ```
-"bupy7/yii2-telize": "@dev"
+"bupy7/yii2-telize": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -36,7 +36,7 @@ Add following code to your configuration file of application:
     ...
     'geoIp' => [
         'class' => 'bupy7\telize\GeoIp',
-        'useApi' => YII_ENV_DEV,
+        'externalIp' => YII_ENV_DEV,
     ],
     ...
 ],
