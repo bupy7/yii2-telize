@@ -1,5 +1,8 @@
-yii2-telize
-===========
+yii2-telize (DEPRECATED)
+========================
+
+**Extension is deprecated. More info [here](http://www.cambus.net/adventures-in-running-a-free-public-api/).**
+
 Wrapper of service offers a REST API allowing to get a visitor IP address and 
 to query location information from any IP address. http://www.telize.com/
 
